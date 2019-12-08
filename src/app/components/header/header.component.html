@@ -1,0 +1,35 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="assets/img/logo_header.jpg" width="80" height="50" class="d-inline-block align-top" alt="logo">
+    <b>
+      My Apuestas
+    </b>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav mr-auto">
+      <a class="nav-item nav-link" [routerLink]="['/apuestas']">Apuestas</a>
+      <a class="nav-item nav-link" [routerLink]="['/tipsters']">Tipsters</a>
+      <a class="nav-item nav-link" [routerLink]="['/casas']">Casas de apuestas</a>
+      <a class="nav-item nav-link" [routerLink]="['/deportes']">Deportes</a>
+      <!--
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Maestros
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" [routerLink]="['/tipsters']">Tipsters</a>
+          <a class="dropdown-item" [routerLink]="['/casas']">Casas de apuestas</a>
+          <a class="dropdown-item" [routerLink]="['/deportes']">Deportes</a>
+        </div>
+      </li>
+      -->
+    </div>
+    <span class="navbar-text">
+      {{version}}
+    </span>
+  </div>
+</nav>

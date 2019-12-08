@@ -1,0 +1,95 @@
+<div class="row botonera">
+  <div class="col-sm-10">
+
+    <mat-form-field>
+      <input 
+              matInput [matDatepicker]="picker2" 
+              placeholder="Fecha apuestas" 
+              [formControl]="dateVirtual">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+    <button 
+            id="btnIrFecha"
+            class="btn btn-outline-secondary btn-sm"
+            (click)="cambiarFecha()"
+            >
+            <fa-icon [icon]="iconBtnVer"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-2 text-right">
+      <button type="button" class="btn btn-outline-secondary" (click)="abrirModal()">Crear Virtual</button>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Fecha</th>
+      <th>Descripción</th>
+      <th>Apuesta</th>
+      <th>Tipster</th>
+      <th>Cuota</th>
+      <th>Importe</th>
+      <th>Resultado</th>
+      <th>Ganancia</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let apuesta of lstVirtuales">
+      <td>{{apuesta?.id}} - {{apuesta?.apuestaId}}</td>
+      <td>{{apuesta?.fechaEvento}}</td>
+      <td>{{apuesta?.descripcion}}</td>
+      <td>{{apuesta?.apuesta}}</td>
+      <td>{{apuesta?.tipster.descripcion}}</td>
+      <td>{{apuesta?.cuota}}</td>
+      <td>{{apuesta?.importe | currency:'EUR':'symbol':'1.2-2':'es'}}</td>
+      <td><span class="badge" 
+                [ngClass]="{
+                  'badge-secondary': apuesta.estado.id < 3,
+                  'badge-success': apuesta.estado.id === 3,
+                  'badge-danger': apuesta.estado.id === 4,
+                  'badge-warning': apuesta.estado.id > 4
+                }">
+                {{apuesta?.estado.descripcion}}
+          </span>
+      </td>
+      <td>{{apuesta?.ganancia | currency:'EUR':'symbol':'1.2-2':'es'}}</td>
+      <td>
+        <div class="btn-group dropleft">
+          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Opciones
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Editar</a>
+            <a class="dropdown-item" (click)="eliminarApuesta(apuesta.id)">Eliminar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Cerrar</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,3)">Ganada</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,4)">Perdida</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,5)">Suspendida</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,6)">Cancelada</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+  <div class="col-sm-10 text-right">
+    <b>Total:</b>
+  </div>
+  <div class="col-sm-2 text-right">
+    <span *ngIf="totalVirtuales > 0" class="badge badge-total badge-success">
+      <b>{{totalVirtuales | currency:'EUR':'symbol':'1.2-2':'es'}}</b>
+    </span>
+    <span *ngIf="totalVirtuales < 0" class="badge badge-total badge-danger">
+      <b>{{totalVirtuales | currency:'EUR':'symbol':'1.2-2':'es'}}</b>
+    </span>
+    <span *ngIf="totalVirtuales == 0" class="badge badge-total badge-warning">
+      <b>{{totalVirtuales | currency:'EUR':'symbol':'1.2-2':'es'}}</b>
+    </span>
+  </div>
+</div>
