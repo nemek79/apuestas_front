@@ -55,6 +55,11 @@ export class CasasComponent implements OnInit {
 
   }
 
+  // TODO Funcion para editar una casa
+  edit(casa: any): void {
+    console.log('TO BE DONE');
+  }
+
   /**
    * Carga la lista de casas de apuestas disponibles en el sistema
    */

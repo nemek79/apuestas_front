@@ -7,18 +7,17 @@
               placeholder="Fecha apuestas" 
               [formControl]="dateVirtual">
       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
+      <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
     <button 
             id="btnIrFecha"
             class="btn btn-outline-secondary btn-sm"
-            (click)="cambiarFecha()"
             >
             <fa-icon [icon]="iconBtnVer"></fa-icon>
     </button>
   </div>
   <div class="col-sm-2 text-right">
-      <button type="button" class="btn btn-outline-secondary" (click)="abrirModal()">Crear Virtual</button>
+      <button type="button" class="btn btn-outline-secondary">Crear Virtual</button>
   </div>
 </div>
 
@@ -64,13 +63,13 @@
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Editar</a>
-            <a class="dropdown-item" (click)="eliminarApuesta(apuesta.id)">Eliminar</a>
+            <a class="dropdown-item" >Eliminar</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Cerrar</a>
-            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,3)">Ganada</a>
-            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,4)">Perdida</a>
-            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,5)">Suspendida</a>
-            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,6)">Cancelada</a>
+            <a class="dropdown-item" >Ganada</a>
+            <a class="dropdown-item">Perdida</a>
+            <a class="dropdown-item">Suspendida</a>
+            <a class="dropdown-item">Cancelada</a>
           </div>
         </div>
       </td>

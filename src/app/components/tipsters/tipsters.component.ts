@@ -53,6 +53,11 @@ export class TipstersComponent implements OnInit {
 
   }
 
+  // TODO Funcion para editar un tipster
+  edit(tipster: any): void {
+    console.log('TO BE DONE');
+  }
+
   /**
    * Obtiene la lista de tipster con una llamada al servicio
    */

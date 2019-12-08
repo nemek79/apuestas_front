@@ -113,6 +113,11 @@ export class DeportesComponent implements OnInit {
 
   }
 
+  // TODO Funcion para editar un deporte
+  public editDeporte(deporte: any): void {
+    console.log('TO BE DONE');
+  }
+
   /**
    * Carga la lista de torneos asociados a un deporte
    */
@@ -131,10 +136,15 @@ export class DeportesComponent implements OnInit {
   /**
    * Carga los torneos asociados al deporte indicado
    */
-  private cargarTorneos(deporteId: number): void {
+  public cargarTorneos(deporteId: number): void {
 
     this.loadTorneos(deporteId);
 
+  }
+
+  // TODO Funcion para editar un torneo
+  public editTorneo(torneo: any): void {
+    console.log('TO BE DONE');
   }
 
 }
