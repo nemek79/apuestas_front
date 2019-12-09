@@ -7,7 +7,7 @@ import { Tipster } from '../modelos/Tipster';
 @Injectable()
 export class TipstersService {
 
-  private urlEndPoint = 'http://localhost:8180/api/tipsters';
+  private urlEndPoint = 'http://vir2al.es:8180/api/tipsters';
 
   private httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'

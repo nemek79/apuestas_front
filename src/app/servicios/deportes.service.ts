@@ -8,7 +8,7 @@ import { Torneo } from '../modelos/torneo';
 @Injectable()
 export class DeportesService {
 
-  private urlEndPoint = 'http://localhost:8180/api/deportes';
+  private urlEndPoint = 'http://vir2al.es:8180/api/deportes';
 
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'

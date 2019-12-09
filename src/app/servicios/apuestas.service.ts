@@ -11,8 +11,8 @@ import { ApuestaFilter } from '../modelos/request/apuestaFilter';
 })
 export class ApuestasService {
 
-  private urlEndPoint = 'http://localhost:8180/api/apuestas';
-  private urlEndPointVirtuales = 'http://localhost:8180/api/virtuales';
+  private urlEndPoint = 'http://vir2al.es:8180/api/apuestas';
+  private urlEndPointVirtuales = 'http://vir2al.es:8180/api/virtuales';
 
   private httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'

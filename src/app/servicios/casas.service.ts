@@ -8,7 +8,7 @@ import { Casa } from '../modelos/casa';
 @Injectable()
 export class CasasService {
 
-  private urlEndPoint = 'http://localhost:8180/api/casas';
+  private urlEndPoint = 'http://vir2al.es:8180/api/casas';
 
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'

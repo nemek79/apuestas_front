@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class TiposService {
 
-  private urlEndPoint = 'http://localhost:8180/api/tipos';
+  private urlEndPoint = 'http://vir2al.es:8180/api/tipos';
 
   constructor(
     private http: HttpClient

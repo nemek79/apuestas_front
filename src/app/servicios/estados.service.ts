@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class EstadosService {
 
-  private urlEndPoint = 'http://localhost:8180/api/estados';
+  private urlEndPoint = 'http://vir2al.es:8180/api/estados';
 
   constructor(
     private http: HttpClient
