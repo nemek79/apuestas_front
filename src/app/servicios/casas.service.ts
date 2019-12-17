@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Casa } from '../modelos/casa';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
 export class CasasService {
 
-  private urlEndPoint = 'http://vir2al.es:8180/api/casas';
+  private urlEndPoint = environment.urlBase + '/casas';
 
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'

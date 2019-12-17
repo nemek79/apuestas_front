@@ -5,14 +5,16 @@ import { Observable, throwError } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Apuesta } from '../modelos/apuesta';
 import { ApuestaFilter } from '../modelos/request/apuestaFilter';
+import { environment } from '../../environments/environment';
+import { Virtual } from '../modelos/virtual';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApuestasService {
 
-  private urlEndPoint = 'http://vir2al.es:8180/api/apuestas';
-  private urlEndPointVirtuales = 'http://vir2al.es:8180/api/virtuales';
+  private urlEndPoint = environment.urlBase + 'apuestas';
+  private urlEndPointVirtuales = environment.urlBase + 'virtuales';
 
   private httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -101,6 +103,35 @@ export class ApuestasService {
     const localUrl = this.urlEndPointVirtuales + '?fechaIni=' + filter.fechaIni;
 
     return this.http.get<any>(localUrl , {headers: this.httpHeaders});
+
+  }
+
+  /**
+   * Crea una nueva apuesta virtual en el sistema
+   */
+  createVirtual(apuesta: Virtual): Observable<any> {
+
+    return this.http.post(this.urlEndPointVirtuales, apuesta, {headers: this.httpHeaders}).pipe(
+      map( (response: any) => {
+
+        response.data.fechaEvento = response.data.fechaEvento.substring(0, 10);
+
+        return response.data as Apuesta;
+      }),
+      catchError(e => {
+        console.log(e);
+        return throwError(e);
+      })
+    );
+
+  }
+
+  /**
+   * Actualiza el estado de la apuesta virtual al estado indicado
+   */
+  actualizarEstadoVirtual(apuestaId: number, estadoId: number): Observable<any> {
+
+    return this.http.put(this.urlEndPointVirtuales + '/' + apuestaId + '/estado?estadoId=' + estadoId, {headers: this.httpHeaders});
 
   }
 

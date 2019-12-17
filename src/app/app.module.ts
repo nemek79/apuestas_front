@@ -60,6 +60,9 @@ const routes: Routes = [
   },  {
     path: 'apuestas/:fechaIni',
     component: ApuestasComponent
+  },  {
+    path: 'virtuales/:fechaIni',
+    component: VirtualComponent
   }, {
     path: 'tipsters',
     component: TipstersComponent

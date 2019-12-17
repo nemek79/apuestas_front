@@ -4,11 +4,12 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Deporte } from '../modelos/deporte';
 import { Torneo } from '../modelos/torneo';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class DeportesService {
 
-  private urlEndPoint = 'http://vir2al.es:8180/api/deportes';
+  private urlEndPoint = environment.urlBase + 'deportes';
 
   private httpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'

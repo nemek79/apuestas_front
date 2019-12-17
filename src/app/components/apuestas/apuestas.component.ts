@@ -88,7 +88,7 @@ export class ApuestasComponent implements OnInit {
 
     this.apuesta = new Apuesta();
 
-    this.apuesta.fechaEvento =  formatDate(new Date(), 'yyyy-MM-dd', 'es');
+    this.apuesta.fechaEvento =  '2019-12-17'; // formatDate(new Date(), 'yyyy-MM-dd', 'es');
 
     // cargar info para combo de tipster
     this.tipsterSRV.getTipsters().subscribe(

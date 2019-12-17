@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TiposService {
 
-  private urlEndPoint = 'http://vir2al.es:8180/api/tipos';
+  private urlEndPoint = environment.urlBase + 'tipos';
 
   constructor(
     private http: HttpClient

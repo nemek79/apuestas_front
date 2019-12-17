@@ -3,11 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Tipster } from '../modelos/Tipster';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TipstersService {
 
-  private urlEndPoint = 'http://vir2al.es:8180/api/tipsters';
+  private urlEndPoint = environment.urlBase + 'tipsters';
 
   private httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'

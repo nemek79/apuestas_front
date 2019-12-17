@@ -12,12 +12,13 @@
     <button 
             id="btnIrFecha"
             class="btn btn-outline-secondary btn-sm"
+            (click)="cambiarFecha()"
             >
             <fa-icon [icon]="iconBtnVer"></fa-icon>
     </button>
   </div>
   <div class="col-sm-2 text-right">
-      <button type="button" class="btn btn-outline-secondary">Crear Virtual</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="abrirModal()">Crear Virtual</button>
   </div>
 </div>
 
@@ -63,13 +64,13 @@
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Editar</a>
-            <a class="dropdown-item" >Eliminar</a>
+            <a class="dropdown-item" (click)="eliminarApuesta(apuesta.id)">Eliminar</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Cerrar</a>
-            <a class="dropdown-item" >Ganada</a>
-            <a class="dropdown-item">Perdida</a>
-            <a class="dropdown-item">Suspendida</a>
-            <a class="dropdown-item">Cancelada</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,3)">Ganada</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,4)">Perdida</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,5)">Suspendida</a>
+            <a class="dropdown-item" (click)="actualizarEstado(apuesta.id,6)">Cancelada</a>
           </div>
         </div>
       </td>
@@ -90,5 +91,113 @@
     <span *ngIf="totalVirtuales == 0" class="badge badge-total badge-warning">
       <b>{{totalVirtuales | currency:'EUR':'symbol':'1.2-2':'es'}}</b>
     </span>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="mdlApuestaVirtual">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Apuesta Virtual</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #apuestaForm="ngForm">
+            <mat-form-field>
+                  <input matInput [(ngModel)]="virtual.fechaEvento" name="fecha" placeholder="Fecha evento">
+            </mat-form-field>
+
+            <div class="form-group row">
+              <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="virtual.descripcion" name="descripcion">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="tipo" class="col-form-label col-sm-3">Tipo</label>
+              <div class="col-sm-9">
+                <select     class="form-control" 
+                            [(ngModel)]="virtual.tipo" 
+                            name="tipo" 
+                            >
+                    <option [ngValue]="undefined">--- Seleccionar tipo ---</option>
+                    <option *ngFor="let tipo of lstTipos" [ngValue]="tipo">{{tipo.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="apuesta" class="col-form-label col-sm-3">Apuesta</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="virtual.apuesta" name="apuesta">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="tipster" class="col-form-label col-sm-3">Tipster</label>
+              <div class="col-sm-9">
+                <select     class="form-control" 
+                            [(ngModel)]="virtual.tipster" 
+                            name="tipster" 
+                           >
+                    <option [ngValue]="undefined">--- Seleccionar tipster ---</option>
+                    <option *ngFor="let tipster of lstTipsters" [ngValue]="tipster">{{tipster.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="deporte" class="col-form-label col-sm-3">Deporte</label>
+              <div class="col-sm-9">
+                <select     class="form-control" 
+                            name="deporte" 
+                            (change)="cargarTorneos($event.target.value)"
+                            >
+                    <option *ngFor="let deporte of lstDeportes" [value]="deporte.id">{{deporte.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="torneo" class="col-form-label col-sm-3">Torneo</label>
+              <div class="col-sm-9">
+                <select     class="form-control" 
+                            [(ngModel)]="virtual.torneo" 
+                            name="torneo" 
+                            >
+                    <option [ngValue]="undefined">--- Seleccionar torneo ---</option>
+                    <option *ngFor="let torneo of lstTorneos" [ngValue]="torneo">{{torneo.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="cuota" class="col-form-label col-sm-3">Cuota</label>
+              <div class="col-sm-3">
+                  <input type="text" class="form-control" [(ngModel)]="virtual.cuota" name="cuota">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="stake" class="col-form-label col-sm-3">Stake</label>
+              <div class="col-sm-3">
+                  <input type="text" class="form-control" [(ngModel)]="virtual.stake" name="stake">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="estado" class="col-form-label col-sm-3">Estado</label>
+              <div class="col-sm-9">
+                <select     class="form-control" 
+                            [(ngModel)]="virtual.estado" 
+                            name="estado" 
+                            >
+                    <option [ngValue]="undefined">--- Seleccionar estado ---</option>
+                    <option *ngFor="let estado of lstEstados" [ngValue]="estado">{{estado.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary"  (click)="create()">Guardar</button>
+      </div>
+    </div>
   </div>
 </div>
