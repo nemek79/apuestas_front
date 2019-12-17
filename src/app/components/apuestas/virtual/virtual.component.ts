@@ -122,6 +122,12 @@ export class VirtualComponent implements OnInit {
 
   }
 
+  cargarTorneos(deporteId: number) {
+
+    this.deportesSRV.getTorneos(deporteId).subscribe( torneos => this.lstTorneos = torneos );
+
+  }
+
   create(): void {
 
     this.apuestasSRV.createVirtual(this.virtual).subscribe(
