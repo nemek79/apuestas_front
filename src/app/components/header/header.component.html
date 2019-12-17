@@ -11,7 +11,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto">
-      <a class="nav-item nav-link" [routerLink]="['/apuestas']">Apuestas</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Apuestas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" [routerLink]="['/apuestas']">General</a>
+          <a class="dropdown-item" [routerLink]="['/virtuales']">Virtual</a>
+        </div>
+      </li>
       <a class="nav-item nav-link" [routerLink]="['/tipsters']">Tipsters</a>
       <a class="nav-item nav-link" [routerLink]="['/casas']">Casas de apuestas</a>
       <a class="nav-item nav-link" [routerLink]="['/deportes']">Deportes</a>
