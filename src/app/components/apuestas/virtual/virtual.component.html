@@ -112,7 +112,11 @@
             <div class="form-group row">
               <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
               <div class="col-sm-9">
-                  <input type="text" class="form-control" [(ngModel)]="virtual.descripcion" name="descripcion">
+                  <input type="text" 
+                          class="form-control" 
+                          [(ngModel)]="virtual.descripcion" 
+                          oninput="this.value = this.value.toUpperCase()"
+                          name="descripcion">
               </div>
             </div>
             <div class="form-group row">
@@ -130,7 +134,11 @@
             <div class="form-group row">
               <label for="apuesta" class="col-form-label col-sm-3">Apuesta</label>
               <div class="col-sm-9">
-                  <input type="text" class="form-control" [(ngModel)]="virtual.apuesta" name="apuesta">
+                  <input type="text" 
+                          class="form-control" 
+                          [(ngModel)]="virtual.apuesta" 
+                          oninput="this.value = this.value.toUpperCase()"
+                          name="apuesta">
               </div>
             </div>
             <div class="form-group row">
