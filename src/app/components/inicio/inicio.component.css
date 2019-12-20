@@ -1,0 +1,17 @@
+.row.colinfo {
+  margin-bottom: 10px;
+}
+
+.card.info .card-header {
+  padding: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card.info .card-body {
+  padding: 5px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}

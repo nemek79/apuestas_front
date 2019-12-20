@@ -30,6 +30,7 @@ import { TipsterComponent } from './components/tipsters/tipster.component';
 import { CasasComponent } from './components/casas/casas.component';
 import { DeportesComponent } from './components/deportes/deportes.component';
 import { VirtualComponent } from './components/apuestas/virtual/virtual.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 // SERVICIOS
 
@@ -44,14 +45,18 @@ import {registerLocaleData} from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 registerLocaleData(localeES, 'es');
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/apuestas',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   }, {
+    path: 'inicio',
+    component: InicioComponent
+  },{
     path: 'apuestas',
     component: ApuestasComponent
   }, {
@@ -88,7 +93,8 @@ const routes: Routes = [
     TipsterComponent,
     CasasComponent,
     DeportesComponent,
-    VirtualComponent
+    VirtualComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
