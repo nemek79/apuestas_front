@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  public version = 'v0.1.0';
+  public version = 'v0.5';
 
   constructor() { }
 

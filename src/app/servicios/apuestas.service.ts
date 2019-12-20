@@ -91,6 +91,16 @@ export class ApuestasService {
 
   }
 
+  /**
+   * Actualiza el estado de una apuesta con estado parcial
+   */
+  actualizarEstadoParcial(apuestaId: number, ganancia: number): Observable<any> {
+
+    return this.http.put(this.urlEndPoint + '/' + apuestaId + '/estado?estadoId=7&ganancia='
+    + ganancia, {headers: this.httpHeaders});
+
+  }
+
   // =============================================
   //  VIRTUALES
   // =============================================

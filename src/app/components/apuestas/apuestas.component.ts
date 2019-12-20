@@ -42,6 +42,8 @@ export class ApuestasComponent implements OnInit {
   public lstTorneos: Torneo[];
   public lstEstados: Estado[];
   public lstTipos: Tipo[];
+  public importeParcial: number;
+  public apuestaIdParcial: number;
 
   date = new FormControl(new Date());
   dateEvento = new FormControl(new Date());
@@ -207,6 +209,45 @@ export class ApuestasComponent implements OnInit {
             swal.fire('Actualizar estado apuesta', `${err.error.mensaje}`, 'error');
           }
         );
+      }
+    });
+
+  }
+
+  actualizarEstadoParcial( apuestaId: number): void {
+
+    this.importeParcial = 0;
+    this.apuestaIdParcial = apuestaId;
+    $('#mdlApuestaParcial').modal('show');
+
+  }
+
+  actualizarEstadoParcialExe(): void {
+
+    swal.fire({
+      title: 'Actualizar estado',
+      text: 'Está seguro de actualizar el estado de la apuesta con id: ' + this.apuestaIdParcial,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Actualizar',
+      type: 'warning'
+    }).then((result) => {
+      if (result.value) {
+
+        this.apuestasSRV.actualizarEstadoParcial(this.apuestaIdParcial, this.importeParcial).subscribe(
+          data => {
+
+            $('#mdlApuestaParcial').modal('hide');
+            this.loadDataApuestas();
+            swal.fire('Actualizar estado apuesta', 'El estado de la apuesta se ha actualizado correctamente', 'success');
+
+          },
+          err => {
+            swal.fire('Actualizar estado apuesta', `${err.error.mensaje}`, 'error');
+          }
+        );
+
       }
     });
 

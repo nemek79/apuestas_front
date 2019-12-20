@@ -40,6 +40,8 @@ export class CasasComponent implements OnInit {
    */
   create(): void {
 
+    console.log(this.casa);
+
     this.casasSRV.create(this.casa).subscribe(
       response => {
 
