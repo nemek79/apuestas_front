@@ -274,8 +274,8 @@ export class ApuestasComponent implements OnInit {
           this.fechaLista = filtro.fechaIni;
           this.lstApuestas = response.data;
           this.totalApuestas = this.calcularTotal(this.lstApuestas);
-        });
-
+        }
+      );
     });
 
   }

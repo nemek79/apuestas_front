@@ -40,6 +40,7 @@ import { CasasService } from './servicios/casas.service';
 import { EstadosService } from './servicios/estados.service';
 import { DeportesService } from './servicios/deportes.service';
 import { TiposService } from './servicios/tipos.service';
+import { InfoService } from './servicios/info.service';
 
 import {registerLocaleData} from '@angular/common';
 import localeES from '@angular/common/locales/es';
@@ -116,6 +117,7 @@ const routes: Routes = [
     EstadosService,
     DeportesService,
     TiposService,
+    InfoService,
     {
       provide: LOCALE_ID,
       useValue: 'es'

@@ -10,7 +10,7 @@
             TOTALES
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.numApuestasTotal}}
           </div>
         </div>
       </div>
@@ -20,7 +20,7 @@
             PENDIENTES
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.numApuestasPendientes}}
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
             GANADAS
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.numApuestasGanadas}}
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             PERDIDAS
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.numApuestasPerdidas}}
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
             OTRAS
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.numApuestasOtras}}
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
             € TOTAL
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.importeTotal | currency:'EUR':'symbol':'1.2-2':'es'}}
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
             € GANADO
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.importeGanado | currency:'EUR':'symbol':'1.2-2':'es'}}
           </div>
         </div>
       </div>
@@ -82,7 +82,7 @@
             € PERDIDO
           </div>
           <div class="card-body text-center">
-            5
+            {{infoDiaria.importePerdido | currency:'EUR':'symbol':'1.2-2':'es'}}
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
             € POTENCIAL
           </div> 
           <div class="card-body text-center">
-            5
+            {{infoDiaria.importePotencial  | currency:'EUR':'symbol':'1.2-2':'es'}}
           </div>
         </div>
       </div>
@@ -102,7 +102,17 @@
             € GANANCIA
           </div>
           <div class="card-body">
-            5
+            {{infoDiaria.importeGanancia  | currency:'EUR':'symbol':'1.2-2':'es'}}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 colinfo">
+        <div class="card info">
+          <div class="card-header">
+            YIELD
+          </div>
+          <div class="card-body">
+            {{infoDiaria.yield}} %
           </div>
         </div>
       </div>
