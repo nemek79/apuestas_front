@@ -15,7 +15,7 @@ export class TipstersComponent implements OnInit {
   public lstTipsters: Tipster[];
   public tipster = new Tipster();
 
-  dtOptions: DataTables.Settings = {};
+  public dtOptions: DataTables.Settings = {};
 
   constructor(
     private tipsterSRV: TipstersService
@@ -70,6 +70,7 @@ export class TipstersComponent implements OnInit {
    * Obtiene la lista de tipster con una llamada al servicio
    */
   private loadTipsters(): void {
+
 
     this.tipsterSRV.getTipsters().subscribe(
       tipsters => this.lstTipsters = tipsters

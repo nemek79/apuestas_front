@@ -45,6 +45,8 @@ export class VirtualComponent implements OnInit {
 
   iconBtnVer = faCheckSquare;
 
+  public dtOptions: DataTables.Settings = {};
+
   constructor(
     private apuestasSRV: ApuestasService,
     private tipsterSRV: TipstersService,
@@ -58,6 +60,11 @@ export class VirtualComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
   }
 
   /**
