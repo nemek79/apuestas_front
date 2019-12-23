@@ -19,6 +19,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // AWESOME
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+// DATE TABLES
+import { DataTablesModule } from 'angular-datatables';
+
 // COMPONENTES
 
 import { AppComponent } from './app.component';
@@ -57,7 +60,7 @@ const routes: Routes = [
   }, {
     path: 'inicio',
     component: InicioComponent
-  },{
+  }, {
     path: 'apuestas',
     component: ApuestasComponent
   }, {
@@ -108,7 +111,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
     MatNativeDateModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DataTablesModule
   ],
   providers: [
     ApuestasService,

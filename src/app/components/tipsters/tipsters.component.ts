@@ -15,6 +15,8 @@ export class TipstersComponent implements OnInit {
   public lstTipsters: Tipster[];
   public tipster = new Tipster();
 
+  dtOptions: DataTables.Settings = {};
+
   constructor(
     private tipsterSRV: TipstersService
   ) {
@@ -22,6 +24,12 @@ export class TipstersComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
   }
 
 
