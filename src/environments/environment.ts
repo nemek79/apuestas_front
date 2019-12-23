@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   urlBase: 'http://localhost:8180/api/',
-  version: 'v0.6.0'
+  version: 'v0.7.0'
 };
 
 /*
