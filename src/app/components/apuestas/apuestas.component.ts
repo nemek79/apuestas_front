@@ -50,6 +50,8 @@ export class ApuestasComponent implements OnInit {
 
   iconBtnVer = faCheckSquare;
 
+  public dtOptions: DataTables.Settings = {};
+
   constructor(
     private apuestasSRV: ApuestasService,
     private tipsterSRV: TipstersService,
@@ -65,7 +67,11 @@ export class ApuestasComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
   }
 
   private calcularTotal(listaApuestas: Apuesta[]): number {

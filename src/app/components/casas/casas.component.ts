@@ -15,6 +15,8 @@ export class CasasComponent implements OnInit {
   public lstCasas: Casa[];
   public casa = new Casa();
 
+  public dtOptions: DataTables.Settings = {};
+
   constructor(
     private casasSRV: CasasService
   ) {
@@ -22,6 +24,11 @@ export class CasasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
   }
 
   /**

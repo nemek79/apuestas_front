@@ -15,3 +15,8 @@
   font-weight: bold;
   text-align: center;
 }
+
+.card.info.yield .card-header {
+
+  background-color: #aaaa22;
+}

@@ -22,6 +22,9 @@ export class DeportesComponent implements OnInit {
 
   public deporteIdSelected = -1;
 
+  public dtOptionsDep: DataTables.Settings = {};
+  public dtOptionsTor: DataTables.Settings = {};
+
   constructor(
     private deportesSRV: DeportesService
   ) {
@@ -29,6 +32,16 @@ export class DeportesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dtOptionsDep = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
+    this.dtOptionsTor = {
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
   }
 
   /**
