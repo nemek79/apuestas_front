@@ -10,10 +10,12 @@ import { InfoDiaria } from 'src/app/modelos/InfoDiaria';
 export class InicioComponent implements OnInit {
 
   public infoDiaria: InfoDiaria;
+  public cargando = false;
 
   constructor(
     private infoSRV: InfoService
   ) {
+    this.cargando = true;
     this.loadInfo();
   }
 
@@ -27,6 +29,7 @@ export class InicioComponent implements OnInit {
     this.infoSRV.getInfoDiaria().subscribe(
       response => {
         this.infoDiaria = response.data;
+        this.cargando = false;
       }
     );
   }

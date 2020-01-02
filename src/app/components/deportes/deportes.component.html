@@ -1,54 +1,19 @@
-<div class="row botonera">
-  <div class="col-sm-10">
-    <h5>Deportes</h5>
-  </div>
-  <div class="col-sm-2 text-right">
-      <button type="button" class="btn btn-outline-secondary" (click)="abrirModalDeporte()">Crear Deporte</button>
-  </div>
+<div *ngIf="cargando" class="loading">
+  <img  
+    src="assets/img/icon_loading.gif" 
+   alt="cargando..">
 </div>
-
-<table *ngIf="lstDeportes" [dtOptions]="dtOptionsDep" datatable class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Descripción</th>
-      <th>Opciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let deporte of lstDeportes"
-        (click)="cargarTorneos(deporte.id)">
-      <td>{{deporte?.id}}</td>
-      <td>{{deporte?.descripcion}}</td>
-      <td>
-        <div class="btn-group dropleft">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Opciones
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="editDeporte(deporte?.id)">Editar</a>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="alert alert-primary" role="alert" *ngIf="deporteIdSelected < 0">
-  Seleccione un deporte para obtener sus torneos!
-</div>
-<div *ngIf="deporteIdSelected >= 0">
-
+<div class="wrapper">
   <div class="row botonera">
     <div class="col-sm-10">
-      <h5>Torneos</h5>
+      <h5>Deportes</h5>
     </div>
     <div class="col-sm-2 text-right">
-        <button type="button" class="btn btn-outline-secondary" (click)="abrirModalTorneo()">Crear Torneo</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="abrirModalDeporte()">Crear Deporte</button>
     </div>
-  </div> 
+  </div>
 
-  <table *ngIf="lstTorneos" [dtOptions]="dtOptionsTor" datatable class="table table-striped">
+  <table *ngIf="lstDeportes" [dtOptions]="dtOptionsDep" datatable class="table table-striped">
     <thead>
       <tr>
         <th>#</th>
@@ -57,16 +22,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let torneo of lstTorneos">
-        <td>{{torneo?.id}}</td>
-        <td>{{torneo?.descripcion}}</td>
+      <tr *ngFor="let deporte of lstDeportes"
+          (click)="cargarTorneos(deporte.id)">
+        <td>{{deporte?.id}}</td>
+        <td>{{deporte?.descripcion}}</td>
         <td>
           <div class="btn-group dropleft">
             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Opciones
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" (click)="editTorneo(torneo?.id)">Editar</a>
+              <a class="dropdown-item" (click)="editDeporte(deporte?.id)">Editar</a>
             </div>
           </div>
         </td>
@@ -74,62 +40,103 @@
     </tbody>
   </table>
 
-</div>
+  <div class="alert alert-primary" role="alert" *ngIf="deporteIdSelected < 0">
+    Seleccione un deporte para obtener sus torneos!
+  </div>
+  <div *ngIf="deporteIdSelected >= 0">
 
-<div class="modal" tabindex="-1" role="dialog" id="mdlDeporte">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear Deporte</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="row botonera">
+      <div class="col-sm-10">
+        <h5>Torneos</h5>
       </div>
-      <div class="modal-body">
-        <form #deporteForm="ngForm">
-          <div class="form-group row">
-            <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" [(ngModel)]="deporte.descripcion" name="descripcion">
+      <div class="col-sm-2 text-right">
+          <button type="button" class="btn btn-outline-secondary" (click)="abrirModalTorneo()">Crear Torneo</button>
+      </div>
+    </div> 
+
+    <table *ngIf="lstTorneos" [dtOptions]="dtOptionsTor" datatable class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripción</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let torneo of lstTorneos">
+          <td>{{torneo?.id}}</td>
+          <td>{{torneo?.descripcion}}</td>
+          <td>
+            <div class="btn-group dropleft">
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Opciones
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="editTorneo(torneo?.id)">Editar</a>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary"  (click)="createDeporte()">Guardar</button>
-      </div>
+  </div>
 
+  <div class="modal" tabindex="-1" role="dialog" id="mdlDeporte">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Crear Deporte</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #deporteForm="ngForm">
+            <div class="form-group row">
+              <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="deporte.descripcion" name="descripcion">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary"  (click)="createDeporte()">Guardar</button>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal" tabindex="-1" role="dialog" id="mdlTorneo">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear Torneo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #deporteForm="ngForm">
-          <div class="form-group row">
-            <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" [(ngModel)]="torneo.descripcion" name="descripcion">
+  <div class="modal" tabindex="-1" role="dialog" id="mdlTorneo">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Crear Torneo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #deporteForm="ngForm">
+            <div class="form-group row">
+              <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="torneo.descripcion" name="descripcion">
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary"  (click)="createTorneo()">Guardar</button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary"  (click)="createTorneo()">Guardar</button>
+        </div>
 
+      </div>
     </div>
   </div>
 </div>

@@ -22,7 +22,7 @@ export const environment = {
       zeroRecords:    'No se han encontrado datos.',
       emptyTable:     'No se han encontrado datos',
       paginate: {
-          first:      'Primer',
+          first:      'Primero',
           previous:   'Anterior',
           next:       'Siguiente',
           last:       'Último'

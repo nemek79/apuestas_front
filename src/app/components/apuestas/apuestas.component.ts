@@ -46,6 +46,8 @@ export class ApuestasComponent implements OnInit {
   public importeParcial: number;
   public apuestaIdParcial: number;
 
+  public cargando = false;
+
   date = new FormControl(new Date());
   dateEvento = new FormControl(new Date());
 
@@ -63,7 +65,7 @@ export class ApuestasComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-
+    this.cargando = true;
     this.loadDataApuestas();
   }
 
@@ -277,6 +279,7 @@ export class ApuestasComponent implements OnInit {
           this.fechaLista = filtro.fechaIni;
           this.lstApuestas = response.data;
           this.totalApuestas = this.calcularTotal(this.lstApuestas);
+          this.cargando = false;
         }
       );
     });

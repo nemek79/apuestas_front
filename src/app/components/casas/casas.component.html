@@ -1,85 +1,92 @@
-<div class="row botonera">
-  <div class="col-sm-10">
-
-  </div>
-  <div class="col-sm-2 text-right">
-      <button type="button" class="btn btn-outline-secondary" (click)="abrirModal()">Crear Casa</button>
-  </div>
+<div *ngIf="cargando" class="loading">
+  <img  
+    src="assets/img/icon_loading.gif" 
+   alt="cargando..">
 </div>
+<div class="wrapper">
+  <div class="row botonera">
+    <div class="col-sm-10">
 
-<table datatable *ngIf="lstCasas" [dtOptions]="dtOptions"  class="table table-striped">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Descripción</th>
-      <th>URL</th>
-      <th>Saldo</th>
-      <th>Opciones</th>
-      <th>Logo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let casa of lstCasas">
-      <td>{{casa?.id}}</td>
-      <td>{{casa?.descripcion}}</td>
-      <td>{{casa?.url}}</td>
-      <td>{{casa?.cantidad | currency:'EUR':'symbol':'1.2-2':'es'}}</td>
-      <td>
-        <img  
-            src="assets/img/{{casa?.descripcion}}.jpg" 
-            alt="{{casa?.descripcion}}">
-      </td>
-      <td>
-        <div class="btn-group dropleft">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Opciones
+    </div>
+    <div class="col-sm-2 text-right">
+        <button type="button" class="btn btn-outline-secondary" (click)="abrirModal()">Crear Casa</button>
+    </div>
+  </div>
+
+  <table datatable *ngIf="lstCasas" [dtOptions]="dtOptions"  class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Descripción</th>
+        <th>URL</th>
+        <th>Saldo</th>
+        <th>Opciones</th>
+        <th>Logo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let casa of lstCasas">
+        <td>{{casa?.id}}</td>
+        <td>{{casa?.descripcion}}</td>
+        <td>{{casa?.url}}</td>
+        <td>{{casa?.cantidad | currency:'EUR':'symbol':'1.2-2':'es'}}</td>
+        <td>
+          <img  
+              src="assets/img/{{casa?.descripcion}}.jpg" 
+              alt="{{casa?.descripcion}}">
+        </td>
+        <td>
+          <div class="btn-group dropleft">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Opciones
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="edit(casa?.id)">Editar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal" tabindex="-1" role="dialog" id="mdlCasa">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Crear Casa de apuestas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
           </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="edit(casa?.id)">Editar</a>
-          </div>
         </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="modal" tabindex="-1" role="dialog" id="mdlCasa">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crear Casa de apuestas</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #casaForm="ngForm">
-          <div class="form-group row">
-            <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" [(ngModel)]="casa.descripcion" name="descripcion">
+        <div class="modal-body">
+          <form #casaForm="ngForm">
+            <div class="form-group row">
+              <label for="descripcion" class="col-form-label col-sm-3">Descripción</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="casa.descripcion" name="descripcion">
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="url" class="col-form-label col-sm-3">URL</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" [(ngModel)]="casa.url" name="url">
+            <div class="form-group row">
+              <label for="url" class="col-form-label col-sm-3">URL</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="casa.url" name="url">
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="cantidad" class="col-form-label col-sm-3">Saldo</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" [(ngModel)]="casa.cantidad" name="cantidad">
+            <div class="form-group row">
+              <label for="cantidad" class="col-form-label col-sm-3">Saldo</label>
+              <div class="col-sm-3">
+                  <input type="text" class="form-control" [(ngModel)]="casa.cantidad" name="cantidad">
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary"  (click)="create()">Guardar</button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary"  (click)="create()">Guardar</button>
+        </div>
 
+      </div>
     </div>
   </div>
 </div>

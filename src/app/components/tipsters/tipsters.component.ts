@@ -15,12 +15,14 @@ export class TipstersComponent implements OnInit {
 
   public lstTipsters: Tipster[];
   public tipster = new Tipster();
+  public cargando = false;
 
   public dtOptions: DataTables.Settings = {};
 
   constructor(
     private tipsterSRV: TipstersService
   ) {
+    this.cargando = true;
     this.loadTipsters();
   }
 
@@ -70,7 +72,10 @@ export class TipstersComponent implements OnInit {
 
 
     this.tipsterSRV.getTipsters().subscribe(
-      tipsters => this.lstTipsters = tipsters
+      tipsters => {
+        this.lstTipsters = tipsters;
+        this.cargando = false;
+      }
     );
 
   }

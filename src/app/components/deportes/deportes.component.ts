@@ -26,9 +26,12 @@ export class DeportesComponent implements OnInit {
   public dtOptionsDep: DataTables.Settings = {};
   public dtOptionsTor: DataTables.Settings = {};
 
+  public cargando = false;
+
   constructor(
     private deportesSRV: DeportesService
   ) {
+    this.cargando = true;
     this.loadDeportes();
   }
 
@@ -114,6 +117,7 @@ export class DeportesComponent implements OnInit {
     this.deportesSRV.getDeportes().subscribe(
       deportes => {
         this.lstDeportes = deportes;
+        this.cargando = false;
       }
     );
 
@@ -129,11 +133,13 @@ export class DeportesComponent implements OnInit {
    */
   private loadTorneos(deporteId: number): void {
 
+    this.cargando = true;
     this.deporteIdSelected = deporteId;
 
     this.deportesSRV.getTorneos(deporteId).subscribe(
       torneos => {
         this.lstTorneos = torneos;
+        this.cargando = false;
       }
     );
 

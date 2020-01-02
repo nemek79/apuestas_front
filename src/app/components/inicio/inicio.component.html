@@ -1,118 +1,125 @@
-<div class="card">
-  <div class="card-header">
-    <h5>APUESTAS DEL DÍA</h5>
-  </div>
-  <div class="card-body">
-    <div class="row colinfo">
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            TOTALES
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.numApuestasTotal}}
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            PENDIENTES
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.numApuestasPendientes}}
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            GANADAS
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.numApuestasGanadas}}
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            PERDIDAS
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.numApuestasPerdidas}}
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            OTRAS
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.numApuestasOtras}}
-          </div>
-        </div>
-      </div>
+<div *ngIf="cargando" class="loading">
+  <img  
+    src="assets/img/icon_loading.gif" 
+   alt="cargando..">
+</div>
+<div *ngIf="!cargando" class="wrapper">
+  <div class="card">
+    <div class="card-header">
+      <h5>APUESTAS DEL DÍA</h5>
     </div>
-    <div class="row">
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            € TOTAL
+    <div class="card-body">
+      <div class="row colinfo">
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              TOTALES
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.numApuestasTotal}}
+            </div>
           </div>
-          <div class="card-body text-center">
-            {{infoDiaria.importeTotal | currency:'EUR':'symbol':'1.2-2':'es'}}
+        </div>
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              PENDIENTES
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.numApuestasPendientes}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              GANADAS
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.numApuestasGanadas}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              PERDIDAS
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.numApuestasPerdidas}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              OTRAS
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.numApuestasOtras}}
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            € GANADO
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.importeGanado | currency:'EUR':'symbol':'1.2-2':'es'}}
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            € PERDIDO
-          </div>
-          <div class="card-body text-center">
-            {{infoDiaria.importePerdido | currency:'EUR':'symbol':'1.2-2':'es'}}
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              € TOTAL
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.importeTotal | currency:'EUR':'symbol':'1.2-2':'es'}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card info">
-          <div class="card-header">
-            € POTENCIAL
-          </div> 
-          <div class="card-body text-center">
-            {{infoDiaria.importePotencial  | currency:'EUR':'symbol':'1.2-2':'es'}}
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              € GANADO
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.importeGanado | currency:'EUR':'symbol':'1.2-2':'es'}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-2 colinfo">
-        <div class="card info">
-          <div class="card-header">
-            € GANANCIA
-          </div>
-          <div class="card-body">
-            {{infoDiaria.importeGanancia  | currency:'EUR':'symbol':'1.2-2':'es'}}
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              € PERDIDO
+            </div>
+            <div class="card-body text-center">
+              {{infoDiaria.importePerdido | currency:'EUR':'symbol':'1.2-2':'es'}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-2 colinfo">
-        <div class="card info yield">
-          <div class="card-header">
-            YIELD
+        <div class="col-sm-2">
+          <div class="card info">
+            <div class="card-header">
+              € POTENCIAL
+            </div> 
+            <div class="card-body text-center">
+              {{infoDiaria.importePotencial  | currency:'EUR':'symbol':'1.2-2':'es'}}
+            </div>
           </div>
-          <div class="card-body">
-            {{infoDiaria.yield | number:'1.2-2'}} %
+        </div>
+        <div class="col-sm-2 colinfo">
+          <div class="card info">
+            <div class="card-header">
+              € GANANCIA
+            </div>
+            <div class="card-body">
+              {{infoDiaria.importeGanancia  | currency:'EUR':'symbol':'1.2-2':'es'}}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 colinfo">
+          <div class="card info yield">
+            <div class="card-header">
+              YIELD
+            </div>
+            <div class="card-body">
+              {{infoDiaria.yield | number:'1.2-2'}} %
+            </div>
           </div>
         </div>
       </div>

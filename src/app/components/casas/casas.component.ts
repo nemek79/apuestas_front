@@ -15,12 +15,14 @@ export class CasasComponent implements OnInit {
 
   public lstCasas: Casa[];
   public casa = new Casa();
+  public cargando = false;
 
   public dtOptions: DataTables.Settings = {};
 
   constructor(
     private casasSRV: CasasService
   ) {
+    this.cargando = true;
     this.loadCasas();
   }
 
@@ -74,6 +76,7 @@ export class CasasComponent implements OnInit {
     this.casasSRV.getCasas().subscribe(
       casas => {
         this.lstCasas = casas;
+        this.cargando = false;
       }
     );
 
