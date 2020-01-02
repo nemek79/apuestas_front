@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TipstersService } from 'src/app/servicios/tipsters.service';
 import { Tipster } from 'src/app/modelos/Tipster';
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -25,11 +26,7 @@ export class TipstersComponent implements OnInit {
 
   ngOnInit() {
 
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
 

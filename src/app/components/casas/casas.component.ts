@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CasasService } from 'src/app/servicios/casas.service';
 import { Casa } from 'src/app/modelos/casa';
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -24,11 +25,7 @@ export class CasasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
   /**

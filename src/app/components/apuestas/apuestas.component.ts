@@ -19,6 +19,7 @@ import { Tipo } from 'src/app/modelos/Tipo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
 
 
 declare var $: any;
@@ -67,11 +68,7 @@ export class ApuestasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
   private calcularTotal(listaApuestas: Apuesta[]): number {

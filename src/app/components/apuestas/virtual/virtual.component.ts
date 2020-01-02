@@ -17,6 +17,7 @@ import { Deporte } from 'src/app/modelos/deporte';
 import { Torneo } from 'src/app/modelos/torneo';
 import { Estado } from 'src/app/modelos/estado';
 import { Tipo } from 'src/app/modelos/Tipo';
+import { environment } from 'src/environments/environment';
 
 
 declare var $: any;
@@ -60,11 +61,7 @@ export class VirtualComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
   /**

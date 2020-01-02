@@ -4,6 +4,7 @@ import { Deporte } from 'src/app/modelos/deporte';
 import { DeportesService } from 'src/app/servicios/deportes.service';
 
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -32,16 +33,8 @@ export class DeportesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dtOptionsDep = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
-    this.dtOptionsTor = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
+    this.dtOptionsDep =  environment.datatableOptions;
+    this.dtOptionsTor =  environment.datatableOptions;
   }
 
   /**
