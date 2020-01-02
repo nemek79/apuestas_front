@@ -33,7 +33,7 @@ export class ApuestasComponent implements OnInit {
 
   public fechaLista: string;
 
-  public lstApuestas: Apuesta[] = [];
+  public lstApuestas: Apuesta[];
   public totalApuestas: number;
   public apuesta = new Apuesta();
   public lstTipsters: Tipster[];
@@ -69,7 +69,7 @@ export class ApuestasComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 10,
       processing: true
     };
   }
