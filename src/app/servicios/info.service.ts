@@ -31,4 +31,15 @@ import { Observable } from 'rxjs';
 
     }
 
+    /**
+     * Obtiene los avisos
+     */
+    getAvisos(): Observable<any> {
+
+      const localUrl = this.urlEndPoint + '/avisos';
+
+      return this.http.get(localUrl);
+
+  }
+
   }

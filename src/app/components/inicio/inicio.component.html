@@ -1,9 +1,9 @@
-<div *ngIf="cargando" class="loading">
+<div *ngIf="cargando > 0" class="loading">
   <img  
     src="assets/img/icon_loading.gif" 
    alt="cargando..">
 </div>
-<div *ngIf="!cargando" class="wrapper">
+<div *ngIf="cargando == 0" class="wrapper">
   <div class="card">
     <div class="card-header">
       <h5>APUESTAS DEL DÍA</h5>
@@ -123,6 +123,23 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h5>AVISOS</h5>
+    </div>
+    <div class="card-body">
+
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let aviso of avisos">
+            <td>{{aviso.tipo}}</td>
+            <td>{{aviso.descripcion}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

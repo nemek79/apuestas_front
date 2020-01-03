@@ -34,6 +34,7 @@ import { CasasComponent } from './components/casas/casas.component';
 import { DeportesComponent } from './components/deportes/deportes.component';
 import { VirtualComponent } from './components/apuestas/virtual/virtual.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 
 // SERVICIOS
 
@@ -48,6 +49,7 @@ import { InfoService } from './servicios/info.service';
 import {registerLocaleData} from '@angular/common';
 import localeES from '@angular/common/locales/es';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EstadisticasService } from './servicios/estadisticas.service';
 
 
 registerLocaleData(localeES, 'es');
@@ -84,6 +86,9 @@ const routes: Routes = [
   }, {
     path: 'deportes',
     component: DeportesComponent
+  }, {
+    path: 'estadisticas/:tipo',
+    component: EstadisticasComponent
   }
 ];
 
@@ -98,7 +103,8 @@ const routes: Routes = [
     CasasComponent,
     DeportesComponent,
     VirtualComponent,
-    InicioComponent
+    InicioComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
@@ -122,6 +128,7 @@ const routes: Routes = [
     DeportesService,
     TiposService,
     InfoService,
+    EstadisticasService,
     {
       provide: LOCALE_ID,
       useValue: 'es'

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   urlBase: 'http://localhost:8180/api/',
+  urlEstadisticasBase: 'http://localhost:8181/api/',
   version: 'v0.7.0',
   datatableOptions: {
     pagingType: 'full_numbers',

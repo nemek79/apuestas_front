@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   urlBase: 'http://vir2al.es:8180/api/',
+  urlEstadisticasBase: 'http://vir2al.es:8181/api/',
   version: 'v0.7',
   datatableOptions: {
     pagingType: 'full_numbers',
