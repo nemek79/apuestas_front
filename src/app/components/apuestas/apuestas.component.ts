@@ -19,6 +19,7 @@ import { Tipo } from 'src/app/modelos/Tipo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import { environment } from 'src/environments/environment';
 
 
 declare var $: any;
@@ -45,6 +46,8 @@ export class ApuestasComponent implements OnInit {
   public importeParcial: number;
   public apuestaIdParcial: number;
 
+  public cargando = false;
+
   date = new FormControl(new Date());
   dateEvento = new FormControl(new Date());
 
@@ -62,16 +65,12 @@ export class ApuestasComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-
+    this.cargando = true;
     this.loadDataApuestas();
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
   private calcularTotal(listaApuestas: Apuesta[]): number {
@@ -279,9 +278,8 @@ export class ApuestasComponent implements OnInit {
         response => {
           this.fechaLista = filtro.fechaIni;
           this.lstApuestas = response.data;
-          if (this.lstApuestas.length > 0) {
-            this.totalApuestas = this.calcularTotal(this.lstApuestas);
-          }
+          this.totalApuestas = this.calcularTotal(this.lstApuestas);
+          this.cargando = false;
         }
       );
     });

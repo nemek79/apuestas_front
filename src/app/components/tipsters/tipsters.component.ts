@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TipstersService } from 'src/app/servicios/tipsters.service';
 import { Tipster } from 'src/app/modelos/Tipster';
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -14,22 +15,20 @@ export class TipstersComponent implements OnInit {
 
   public lstTipsters: Tipster[];
   public tipster = new Tipster();
+  public cargando = false;
 
   public dtOptions: DataTables.Settings = {};
 
   constructor(
     private tipsterSRV: TipstersService
   ) {
+    this.cargando = true;
     this.loadTipsters();
   }
 
   ngOnInit() {
 
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
 
@@ -73,7 +72,10 @@ export class TipstersComponent implements OnInit {
 
 
     this.tipsterSRV.getTipsters().subscribe(
-      tipsters => this.lstTipsters = tipsters
+      tipsters => {
+        this.lstTipsters = tipsters;
+        this.cargando = false;
+      }
     );
 
   }

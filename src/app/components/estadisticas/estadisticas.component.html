@@ -1,0 +1,9 @@
+<div *ngIf="cargando" class="loading">
+  <img  
+    src="assets/img/icon_loading.gif" 
+   alt="cargando..">
+</div>
+<div *ngIf="!cargando" class="wrapper">
+  <h1>estadisticas!</h1>
+  <H3>resultado: {{tmp}}</H3>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CasasService } from 'src/app/servicios/casas.service';
 import { Casa } from 'src/app/modelos/casa';
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -14,21 +15,19 @@ export class CasasComponent implements OnInit {
 
   public lstCasas: Casa[];
   public casa = new Casa();
+  public cargando = false;
 
   public dtOptions: DataTables.Settings = {};
 
   constructor(
     private casasSRV: CasasService
   ) {
+    this.cargando = true;
     this.loadCasas();
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 10,
-      processing: true
-    };
+    this.dtOptions = environment.datatableOptions;
   }
 
   /**
@@ -77,6 +76,7 @@ export class CasasComponent implements OnInit {
     this.casasSRV.getCasas().subscribe(
       casas => {
         this.lstCasas = casas;
+        this.cargando = false;
       }
     );
 

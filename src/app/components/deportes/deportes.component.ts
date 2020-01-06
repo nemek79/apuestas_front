@@ -4,6 +4,7 @@ import { Deporte } from 'src/app/modelos/deporte';
 import { DeportesService } from 'src/app/servicios/deportes.service';
 
 import swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -25,23 +26,18 @@ export class DeportesComponent implements OnInit {
   public dtOptionsDep: DataTables.Settings = {};
   public dtOptionsTor: DataTables.Settings = {};
 
+  public cargando = false;
+
   constructor(
     private deportesSRV: DeportesService
   ) {
+    this.cargando = true;
     this.loadDeportes();
   }
 
   ngOnInit() {
-    this.dtOptionsDep = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
-    this.dtOptionsTor = {
-      pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
-    };
+    this.dtOptionsDep =  environment.datatableOptions;
+    this.dtOptionsTor =  environment.datatableOptions;
   }
 
   /**
@@ -121,6 +117,7 @@ export class DeportesComponent implements OnInit {
     this.deportesSRV.getDeportes().subscribe(
       deportes => {
         this.lstDeportes = deportes;
+        this.cargando = false;
       }
     );
 
@@ -136,11 +133,13 @@ export class DeportesComponent implements OnInit {
    */
   private loadTorneos(deporteId: number): void {
 
+    this.cargando = true;
     this.deporteIdSelected = deporteId;
 
     this.deportesSRV.getTorneos(deporteId).subscribe(
       torneos => {
         this.lstTorneos = torneos;
+        this.cargando = false;
       }
     );
 
