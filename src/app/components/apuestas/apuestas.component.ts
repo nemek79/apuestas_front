@@ -33,7 +33,7 @@ export class ApuestasComponent implements OnInit {
 
   public fechaLista: string;
 
-  public lstApuestas: Apuesta[] = [];
+  public lstApuestas: Apuesta[];
   public totalApuestas: number;
   public apuesta = new Apuesta();
   public lstTipsters: Tipster[];
@@ -279,7 +279,9 @@ export class ApuestasComponent implements OnInit {
         response => {
           this.fechaLista = filtro.fechaIni;
           this.lstApuestas = response.data;
-          this.totalApuestas = this.calcularTotal(this.lstApuestas);
+          if (this.lstApuestas.length > 0) {
+            this.totalApuestas = this.calcularTotal(this.lstApuestas);
+          }
         }
       );
     });
